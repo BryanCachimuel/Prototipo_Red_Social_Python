@@ -1,5 +1,5 @@
-from email import message
-from django.shortcuts import render
+from django.contrib import messages
+from django.shortcuts import render, redirect
 from .models import *
 from django.contrib.auth.forms import UserCreationForm
 
@@ -23,7 +23,8 @@ def register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
-            message.success(request, f'Usuario {username} creado satisfactoriamente')
+            messages.success(request, f'Usuario {username} creado satisfactoriamente')
+            return redirect('feed')
     else:
         form = UserCreationForm()
     
