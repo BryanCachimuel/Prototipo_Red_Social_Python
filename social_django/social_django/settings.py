@@ -30,11 +30,15 @@ ALLOWED_HOSTS = []
 
 # Application definition
 """"
+video 2.1: 
     Buena práctica 'redsocialdj.apps.RedsocialdjConfig' 
     es neccesario escribir así para que no exista errores al invocar a la app
     redsocialdj        -> nombre del proyecto
     apps.py            -> archivo dentro del proyecto redsocialdj 
     RedsocialdjConfig  -> nombre de la clase definida dentro del archivo apps.py
+
+video 3.4
+    django.contrib.humanize -> para poner un formato de tiempo para los posts publicados
 """
 
 INSTALLED_APPS = [
@@ -44,7 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'redsocialdj.apps.RedsocialdjConfig'
+    'redsocialdj.apps.RedsocialdjConfig',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
