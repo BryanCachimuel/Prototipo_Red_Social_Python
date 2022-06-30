@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -128,7 +129,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+"""
+video 4.2 se definen los archivos estaticos a utilizarse en este proyecto
+MEDIA_URL = '/media/' -> permitira acceder a todos los archivos media
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') -> definimos en donde vamos a crear el directorio
+                                                por que cuando nosotros empenzemos a agregar imagenes
+                                                estas se tienen que guardar en un lugar
+"""
 STATIC_URL = 'static/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
