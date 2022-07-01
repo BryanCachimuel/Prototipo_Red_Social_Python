@@ -1,7 +1,8 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
+from .forms import UserRegisterForm
 from .models import *
-from django.contrib.auth.forms import UserCreationForm
+
 
 """
 video 2. Creación de las vistas para verificar si los templates estan correctamente puestos.
@@ -18,15 +19,17 @@ def feed(request):
     return render(request, 'social/feed.html', context)
 
 # video 5.1 -> invocación a la vista para el registro de usuarios
+# video 5.4 -> form.save() para guardar los datos dentro de la base de datos
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = UserRegisterForm(request.POST)
         if form.is_valid():
+            form.save()
             username = form.cleaned_data['username']
             messages.success(request, f'Usuario {username} creado satisfactoriamente')
             return redirect('feed')
     else:
-        form = UserCreationForm()
+        form = UserRegisterForm()
     
     context = {'form':form}
     return render(request, 'social/register.html', context)

@@ -135,11 +135,15 @@ MEDIA_URL = '/media/' -> permitira acceder a todos los archivos media
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') -> definimos en donde vamos a crear el directorio
                                                 por que cuando nosotros empenzemos a agregar imagenes
                                                 estas se tienen que guardar en un lugar
+
+video 5.5 -> LOGIN_REDIRECT_URL = 'feed' -> hacemos que nos redireccione al feed
 """
 STATIC_URL = 'static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGIN_REDIRECT_URL = 'feed'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
