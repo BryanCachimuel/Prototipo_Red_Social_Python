@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 
+
 """
  video 3.1 Crear los modelos
  linea 21: cascade significa que se eliminará el usuario de la tabla 
@@ -37,4 +38,7 @@ class Post(models.Model):
     # muestra la información del post tanto como usuaio como contenido del post
     def __str__(self):
         return f'{self.user.username}: {self.content}'
+
+
+
 
