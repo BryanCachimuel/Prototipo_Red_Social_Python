@@ -3,6 +3,7 @@ from .models import *
 from .forms import PostForm, UserRegisterForm
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 
 """
@@ -39,7 +40,7 @@ def register(request):
 8.3 creación de la vista para los post
 (User, pk=request.user.pk) -> se obtiene el usario que esta logeado
 """
-
+@login_required
 def post(request):
     current_user = get_object_or_404(User, pk=request.user.pk)
     if request.method == 'POST':
@@ -71,19 +72,19 @@ def profile(request, username=None):
 
 # video 10.2 creando el procedimientos de las vistas para los followers y following
 def follow(request, username):
-    current_user = request.user
-    to_user = User.objects.get(username=username)
-    to_user_id = to_user
-    rel = Relationship(from_user=current_user, to_user=to_user_id)
-    rel.save()
-    messages.success(request, f'sigues a {username}')
-    return redirect('home')
+	current_user = request.user
+	to_user = User.objects.get(username=username)
+	to_user_id = to_user
+	rel = Relationship(from_user=current_user, to_user=to_user_id)
+	rel.save()
+	messages.success(request, f'sigues a {username}')
+	return redirect('feed')
 
 def unfollow(request, username):
-    current_user = request.user
-    to_user = User.objects.get(username=username)
-    to_user_id = to_user
-    rel = Relationship.objects.filter(from_user=current_user.id, to_user=to_user_id).get()
-    rel.delete()
-    messages.success(request, f'Ya no sigues a {username}')
-    return redirect('home')
+	current_user = request.user
+	to_user = User.objects.get(username=username)
+	to_user_id = to_user.id
+	rel = Relationship.objects.filter(from_user=current_user.id, to_user=to_user_id).get()
+	rel.delete()
+	messages.success(request, f'Ya no sigues a {username}')
+	return redirect('feed')
