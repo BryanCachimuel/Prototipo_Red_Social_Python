@@ -68,3 +68,22 @@ def profile(request, username=None):
         posts = current_user.posts.all()
         user = current_user
     return render(request, 'social/profile.html', {'user':user, 'posts':posts})
+
+# video 10.2 creando el procedimientos de las vistas para los followers y following
+def follow(request, username):
+    current_user = request.user
+    to_user = User.objects.get(username=username)
+    to_user_id = to_user
+    rel = Relationship(from_user=current_user, to_user=to_user_id)
+    rel.save()
+    messages.success(request, f'sigues a {username}')
+    return redirect('home')
+
+def unfollow(request, username):
+    current_user = request.user
+    to_user = User.objects.get(username=username)
+    to_user_id = to_user
+    rel = Relationship.objects.filter(from_user=current_user.id, to_user=to_user_id).get()
+    rel.delete()
+    messages.success(request, f'Ya no sigues a {username}')
+    return redirect('home')
