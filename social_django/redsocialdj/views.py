@@ -61,14 +61,14 @@ video 9.1 modificamos la función para que podamos ingresar al perfil de
           cada usuario
 """
 def profile(request, username=None):
-    current_user = request.user
-    if username and username != current_user.username:
-        user = User.objects.get(username=username)
-        posts = user.posts.all()
-    else:
-        posts = current_user.posts.all()
-        user = current_user
-    return render(request, 'social/profile.html', {'user':user, 'posts':posts})
+	current_user = request.user
+	if username and username != current_user.username:
+		user = User.objects.get(username=username)
+		posts = user.posts.all()
+	else:
+		posts = current_user.posts.all()
+		user = current_user
+	return render(request, 'social/profile.html', {'user':user, 'posts':posts})
 
 # video 10.2 creando el procedimientos de las vistas para los followers y following
 def follow(request, username):

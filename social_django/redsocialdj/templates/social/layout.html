@@ -15,7 +15,8 @@
 			<a href="{% url 'feed' %}"><h2 id="logo">Red Social en Python</h2></a>
 			<ul>
 				{% if request.user.is_authenticated %}
-				 	<li><a href="{% url 'logout' %}">Logout</a></li>
+					<h2>@{{ user.username }}</h2>
+				 	<li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
 				{% else %}
 					<li><a href="{% url 'register' %}">Register</a></li>
 					<li><a href="{% url 'login' %}">Login</a></li>

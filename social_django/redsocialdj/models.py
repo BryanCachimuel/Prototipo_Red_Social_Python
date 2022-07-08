@@ -29,13 +29,13 @@ class Profile(models.Model):
     def following(self):
         user_ids = Relationship.objects.filter(from_user=self.user)\
                                 .values_list('to_user_id', flat=True)
-        return User.objects.filter(id_in=user_ids)
+        return User.objects.filter(id__in=user_ids)
 
     # función para saber cuantas personas me siguen
     def followers(self):
         user_ids = Relationship.objects.filter(to_user=self.user)\
                                 .values_list('from_user_id', flat=True)
-        return User.objects.filter(id_in=user_ids)
+        return User.objects.filter(id__in=user_ids)
 
 
 # atributos que va a tener la tabla post
